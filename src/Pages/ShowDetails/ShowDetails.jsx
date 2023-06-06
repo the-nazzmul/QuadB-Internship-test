@@ -1,14 +1,19 @@
 import { Rating } from "@smastrom/react-rating";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import '@smastrom/react-rating/style.css'
 
 
 const ShowDetails = () => {
     const showDetails = useLoaderData()
-    console.log(showDetails);
-    const { image, name, rating, premiered, language, summary, genres, schedule } = showDetails;
+    const { image, name, rating, premiered, language, summary, genres,id} = showDetails;
+    // console.log(showDetails);
+    const removeHtmlTags = (htmlString) => {
+        const doc = new DOMParser().parseFromString(htmlString, 'text/html');
+        return doc.body.textContent || '';
+    };
 
-    const cleanSummary = summary.replace(/<\/?p>/g, '');
+    const cleanSummary = removeHtmlTags(summary)
+
     return (
         <div>
             <div className="card lg:card-side bg-base-100 shadow-xl">
@@ -33,47 +38,10 @@ const ShowDetails = () => {
                     </div>
                     <h4><span className='font-semibold'>Language: </span> {language}</h4>
                     <h4><span className='font-semibold'>Primired: </span> {premiered}</h4>
-                    <p className="font-bold mt-4">Summary: <small className=" font-normal text-gray-800"><i>{cleanSummary}</i></small></p>
-
-
-                    {/* <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Listen</button>
-                    </div> */}
-                    {/* moadal for booking */}
-                    <button className="btn btn-primary text-white w-1/2 mx-auto" onClick={() => window.my_modal_3.showModal()}>Book Movie Ticket</button>
-                    <dialog id="my_modal_3" className="modal w-full">
-                        <form method="dialog" className="modal-box w-11/12 max-w-5xl">
-                            <button htmlFor="my-modal-3" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                            <div className="form-control w-full">
-                                <label className="label">
-                                    <span className="label-text">Movie Name*</span>
-                                </label>
-                                <input type="text" defaultValue={name} placeholder="Type here" className="input input-bordered w-full" readOnly />
-                            </div>
-                            <div className="flex gap-2">
-                                <div className="form-control w-1/2">
-                                    <label className="label">
-                                        <span className="label-text">Day*</span>
-                                    </label>
-                                    <input type="text" defaultValue={schedule.days[0]} placeholder="Type here" className="input input-bordered w-full" readOnly />
-                                </div>
-                                <div className="form-control w-1/2">
-                                    <label className="label">
-                                        <span className="label-text">Day*</span>
-                                    </label>
-                                    <input type="text" defaultValue={schedule.time} placeholder="Type here" className="input input-bordered w-full" readOnly />
-                                </div>
-                            </div>
-                            <div className="form-control w-full">
-                                <label className="label">
-                                    <span className="label-text">User Name*</span>
-                                </label>
-                                <input type="text" defaultValue={name} placeholder="Type here" className="input input-bordered w-full" readOnly />
-                            </div>
-                        </form>
-                    </dialog>
+                    <p className="font-bold mt-4">Summary: <small className=" font-normal"><i>{cleanSummary}</i></small></p>
+                    <Link to={`/booking/${id}`}><button className="btn btn-primary">Book Ticket</button></Link>
                 </div>
-
+                
             </div>
         </div>
     );

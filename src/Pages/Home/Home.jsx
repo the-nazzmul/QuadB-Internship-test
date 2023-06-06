@@ -18,7 +18,7 @@ const Home = () => {
     return (
         <div>
             <Banner></Banner>
-            <div className="grid grid-cols-3 mt-8 gap-4">
+            <div className="grid lg:grid-cols-3 mt-8 gap-4">
                 {
                     shows.map(show => <ShowCard key={show.id} show={show}></ShowCard>)
                 }

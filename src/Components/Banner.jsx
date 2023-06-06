@@ -2,8 +2,8 @@
 
 const Banner = () => {
     return (
-        <div>
-            <div className="hero min-h-screen bg-gradient-to-tr from-red-600 to-orange-600" >
+        <div className="banner">
+            <div className="hero min-h-[600px]" >
                 <div className="hero-overlay bg-opacity-30"></div>
                 <div className="hero-content text-center text-neutral-content">
                     <div className="max-w-md">

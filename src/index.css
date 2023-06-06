@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.banner{
+    background-image: url('https://img.freepik.com/free-photo/assortment-cinema-elements-red-background-with-copy-space_23-2148457848.jpg?w=2000&t=st=1686060205~exp=1686060805~hmac=afae8dd206e7450daca7d1efbc42cafd8ceaca03bd1731609e3ddfe8919ed50a');
+    background-size: cover;
+}
